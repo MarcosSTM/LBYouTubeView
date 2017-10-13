@@ -128,7 +128,8 @@ static NSString* algoJson = @"[80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 6
 		
         // Check the signature:
 		if ([sigs count] > 0) {
-			sigCheckingResult = [sigs objectAtIndex:index];
+            unsigned int idx = MIN(index,sigs.count-1);
+			sigCheckingResult = [sigs objectAtIndex:idx];
             NSString* encrSyg = [string substringWithRange:sigCheckingResult.range];
             
             sig_regex = [[NSRegularExpression alloc] initWithPattern:@"(?<=sig\\\\\": \\\\\")[^\"]*?(?=\\\\\")" options:NSRegularExpressionCaseInsensitive error:nil];
